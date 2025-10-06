@@ -66,10 +66,16 @@ a {
     margin: 0 auto;
 }
 
-.logo {
-    font-size: 1.6em;
-    font-weight: 700;
-    color: var(--color-secondary); 
+/* ESTILOS PARA EL LOGO (IMAGEN) */
+.logo img {
+    height: 50px; /* Tamaño del logo en escritorio */
+    max-width: 100%;
+    display: block;
+    transition: transform 0.2s;
+}
+
+.logo img:hover {
+    transform: scale(1.05); /* Pequeño efecto al pasar el mouse */
 }
 
 .navbar ul {
@@ -287,5 +293,8 @@ a {
     }
     .hero h2 {
         font-size: 1.2em;
+    }
+    .logo img {
+        height: 40px; /* Ajuste para móvil */
     }
 }
