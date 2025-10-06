@@ -1,10 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement; // Accede a la etiqueta <html>
-    const logoLight = document.getElementById('logo-light');
-    const logoDark = document.getElementById('logo-dark');
+    const html = document.documentElement; 
+    const logoLight = document.getElementById('logo-light'); // Logo con colores oscuros (para fondo claro)
+    const logoDark = document.getElementById('logo-dark');   // Logo con colores claros (para fondo oscuro)
 
-    // 1. Función para aplicar el tema y actualizar el logo
+    /**
+     * Aplica el tema seleccionado al HTML, guarda la preferencia y actualiza UI.
+     * @param {string} theme - 'light' o 'dark'.
+     */
     function applyTheme(theme) {
         html.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
@@ -12,33 +15,45 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLogo(theme);
     }
 
-    // 2. Función para actualizar el icono del botón (sol/luna)
+    /**
+     * Actualiza el ícono del botón (sol o luna) basado en el tema actual.
+     * @param {string} currentTheme - El tema actualmente activo.
+     */
     function updateToggleIcon(currentTheme) {
+        // Muestra el icono opuesto al tema activo, sugiriendo el cambio.
         if (currentTheme === 'dark') {
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Mostrar sol para cambiar a claro
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>'; 
         } else {
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Mostrar luna para cambiar a oscuro
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>'; 
         }
     }
 
-    // 3. Función para cambiar la visibilidad del logo
+    /**
+     * Controla qué imagen de logo debe mostrarse para mantener el contraste.
+     * @param {string} currentTheme - El tema actualmente activo.
+     */
     function updateLogo(currentTheme) {
-        // Removemos la clase 'active-logo' de ambos por seguridad
+        // Remueve la clase activa de ambos logos para asegurar un solo visible.
         logoLight.classList.remove('active-logo');
         logoDark.classList.remove('active-logo');
         
-        // Agregamos la clase al logo que corresponde al tema
+        // La lógica se invierte para garantizar el contraste:
+        // Fondo oscuro (dark) necesita el logo claro (logoDark).
         if (currentTheme === 'dark') {
-            logoDark.classList.add('active-logo'); // Muestra el logo para fondo oscuro (logo claro)
-        } else {
-            logoLight.classList.add('active-logo'); // Muestra el logo para fondo claro (logo oscuro)
+            logoDark.classList.add('active-logo'); 
+        } 
+        // Fondo claro (light) necesita el logo oscuro (logoLight).
+        else {
+            logoLight.classList.add('active-logo'); 
         }
     }
 
-    // 4. Cargar el tema al inicio (Prioridad: Guardado > Sistema > Default)
+    // --- Inicialización del Tema ---
+
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
+    // Prioridad: 1. Tema Guardado, 2. Preferencia del Sistema, 3. Default ('light')
     if (savedTheme) {
         applyTheme(savedTheme);
     } else if (prefersDark) {
@@ -47,7 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
         applyTheme('light'); 
     }
 
-    // 5. Manejar el click del botón
+    // --- Event Listener ---
+    
     themeToggle.addEventListener('click', () => {
         let currentTheme = html.getAttribute('data-theme');
         let newTheme = currentTheme === 'light' ? 'dark' : 'light';
