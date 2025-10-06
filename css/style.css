@@ -413,12 +413,20 @@ html[data-theme='dark'] .skill-card li {
 }
 
 .footer {
-    background-color: var(--color-secondary); 
-    color: #cccccc; 
+    /* Fondo oscuro por defecto (negro) */
+    background-color: #000000; 
+    color: #cccccc; /* Texto siempre gris claro */
     text-align: center;
     padding: 20px;
     font-size: 0.85em;
-    transition: background-color 0.3s ease, color 0.3s ease; 
+    transition: background-color 0.3s ease; 
+}
+
+/* AJUSTE CLAVE para el modo oscuro */
+html[data-theme='dark'] .footer {
+    /* Usamos el color de fondo principal oscuro, que es #1a1a1a */
+    background-color: var(--color-light); 
+    color: #cccccc; 
 }
 
 .footer p {
