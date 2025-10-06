@@ -1,1 +1,274 @@
+/* ------------------------------------------------ */
+/* 1. RESET, BASE Y TIPOGRAFÍA */
+/* ------------------------------------------------ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+:root {
+    --color-primary: #5a189a; 
+    --color-secondary: #000000; 
+    --color-text-light: #444444; 
+    --color-light: #ffffff; 
+    --color-bg-alt: #f8f8f8; 
+    --font-family: 'Roboto', sans-serif; 
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--color-text-light);
+    background-color: var(--color-light);
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+}
+
+.section {
+    padding: 100px 5%; 
+    max-width: 1200px;
+    margin: 0 auto; 
+}
+
+.section-title {
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    text-align: center;
+    color: var(--color-secondary);
+    font-weight: 700;
+}
+
+/* ------------------------------------------------ */
+/* 2. NAVEGACIÓN Y HEADER */
+/* ------------------------------------------------ */
+.header {
+    background-color: var(--color-light);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--color-secondary); 
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+}
+
+.navbar li a {
+    padding: 10px 15px;
+    display: block;
+    font-weight: 400;
+    color: var(--color-text-light);
+    transition: color 0.3s;
+}
+
+.navbar li a:hover {
+    color: var(--color-primary);
+}
+
+/* ------------------------------------------------ */
+/* 3. BOTONES */
+/* ------------------------------------------------ */
+.btn-primary, .btn-secondary, .btn-primary-sm, .btn-secondary-sm {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 4px;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.2s;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    border: 2px solid var(--color-primary);
+    margin-right: 15px;
+}
+.btn-primary:hover {
+    background-color: #4a148c; 
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+.btn-secondary:hover {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    transform: translateY(-1px);
+}
+
+.btn-primary-sm, .btn-secondary-sm {
+    padding: 8px 15px; 
+    font-size: 0.8em;
+}
+
+/* ------------------------------------------------ */
+/* 4. SECCIÓN HERO */
+/* ------------------------------------------------ */
+.hero {
+    background-color: var(--color-bg-alt);
+    text-align: center;
+    padding: 150px 5%;
+}
+
+.hero h1 {
+    font-size: 3.5em;
+    color: var(--color-secondary);
+    margin-bottom: 10px;
+}
+
+.hero h2 {
+    font-size: 1.5em;
+    color: var(--color-primary);
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.hero p {
+    font-size: 1.1em;
+    margin-bottom: 40px;
+}
+
+/* ------------------------------------------------ */
+/* 5. SECCIÓN SKILLS */
+/* ------------------------------------------------ */
+.skills {
+    background-color: var(--color-light); 
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.skill-card {
+    background-color: var(--color-bg-alt);
+    padding: 30px;
+    border-radius: 8px;
+    border-top: 5px solid var(--color-primary); 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.skill-card h3 {
+    color: var(--color-secondary);
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+.skill-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.skill-card li {
+    padding: 5px 0;
+    border-bottom: 1px dashed #cccccc;
+}
+
+/* ------------------------------------------------ */
+/* 6. SECCIÓN PROYECTOS */
+/* ------------------------------------------------ */
+.projects {
+    background-color: var(--color-bg-alt);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.project-card {
+    background-color: var(--color-light);
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.project-card h3 {
+    color: var(--color-secondary);
+    font-size: 1.6em;
+    margin-bottom: 10px;
+}
+
+.tech-stack {
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 0.95em;
+}
+
+.project-links a {
+    margin-right: 10px;
+}
+
+/* ------------------------------------------------ */
+/* 7. SECCIÓN CONTACTO Y FOOTER */
+/* ------------------------------------------------ */
+.contact {
+    text-align: center;
+}
+
+.contact-info {
+    margin-top: 30px;
+    font-size: 1.1em;
+}
+
+.footer {
+    background-color: var(--color-secondary);
+    color: #cccccc;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.85em;
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* ------------------------------------------------ */
+/* 8. MEDIA QUERIES */
+/* ------------------------------------------------ */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+    .navbar ul {
+        margin-top: 10px;
+    }
+    .navbar li {
+        margin: 0 5px;
+    }
+    .hero h1 {
+        font-size: 2.5em;
+    }
+    .hero h2 {
+        font-size: 1.2em;
+    }
+}
