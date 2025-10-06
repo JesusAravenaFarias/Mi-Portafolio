@@ -1,3 +1,6 @@
+// Si ves este mensaje en la Consola (F12) de tu navegador, el script está cargando.
+console.log("Script de Theme Toggle cargado correctamente.");
+
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const html = document.documentElement; // Accede a la etiqueta <html>
