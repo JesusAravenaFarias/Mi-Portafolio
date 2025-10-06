@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es" data-theme="light"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jesus Antonio Araveña Farias | Fullstack Developer</title>
@@ -9,6 +8,8 @@
     <link rel="stylesheet" href="css/style.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -20,6 +21,10 @@
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Portafolio</a></li>
                 <li><a href="#contact" class="btn-contact">Contacto</a></li>
+                <li>
+                    <button id="theme-toggle" class="btn-theme-toggle" aria-label="Cambiar tema">
+                        <i class="fas fa-moon"></i> </button>
+                </li>
             </ul>
         </nav>
     </header>
@@ -137,6 +142,8 @@
     <footer class="footer">
         <p>© 2025 Jesus Antonio Araveña Farias. Desarrollado con código limpio y pasión Fullstack.</p>
     </footer>
+
+    <script src="js/theme-toggle.js"></script>
 
 </body>
 </html>
