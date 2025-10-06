@@ -136,15 +136,15 @@ a {
 .hero {
     background-color: var(--color-bg-alt);
     text-align: center;
-    padding: 150px 5%;
-    position: relative; /* Base para posicionar el logo de forma absoluta */
+    padding: 150px 5% 100px 5%; /* Ajuste del padding para dar espacio al logo */
+    position: relative; /* CLAVE: Base para posicionar el logo de forma absoluta */
 }
 
 /* ESTILOS PARA EL LOGO FIJO EN LA ESQUINA SUPERIOR IZQUIERDA */
 .hero-logo-container {
-    position: absolute; 
-    top: 50px; /* Ajuste para que baje un poco desde el borde superior */
-    left: 5%; 
+    position: absolute; /* CLAVE: Posicionamiento absoluto */
+    top: 30px; /* Distancia desde el borde superior del .hero */
+    left: 5%; /* Distancia desde el borde izquierdo del .hero */
     
     width: 100px; 
     height: 100px; 
@@ -154,7 +154,7 @@ a {
     align-items: center;
     
     z-index: 10; 
-    margin: 0; 
+    margin: 0; /* Aseguramos que no se centre por márgenes */
 }
 
 .hero-logo-container img {
