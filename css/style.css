@@ -7,25 +7,48 @@
     box-sizing: border-box; /* Estándar profesional para manejo de padding y border */
 }
 
+/* Variables de CSS para el tema CLARO (por defecto) */
 :root {
     /* Paleta de colores principal */
-    --color-primary: #5a189a; 
-    --color-secondary: #000000; 
-    --color-text-light: #444444; 
-    --color-light: #ffffff; 
-    --color-bg-alt: #f8f8f8; 
+    --color-primary: #5a189a; /* Violeta principal */
+    --color-secondary: #000000; /* Negro para títulos y texto fuerte */
+    --color-text-light: #444444; /* Gris oscuro para texto general */
+    --color-light: #ffffff; /* Blanco para fondos */
+    --color-bg-alt: #f8f8f8; /* Gris muy claro para secciones alternativas */
+    --color-card-bg: #ffffff; /* Fondo de tarjetas */
+    --color-card-border: #e0e0e0; /* Borde de tarjetas */
+    --color-skill-card-bg: var(--color-bg-alt); /* Fondo de tarjetas de skills */
+    --color-skill-card-hover-bg: var(--color-light); /* Fondo de tarjetas de skills al hover */
+
     /* Tipografía y sombras */
     --font-family: 'Roboto', sans-serif; 
     --shadow-soft: 0 4px 10px rgba(0, 0, 0, 0.07);
     --shadow-hover: 0 8px 18px rgba(0, 0, 0, 0.15); 
 }
 
+/* Variables de CSS para el tema OSCURO (cuando html tiene data-theme="dark") */
+html[data-theme='dark'] {
+    --color-primary: #8a2be2; /* Violeta más brillante para el modo oscuro */
+    --color-secondary: #e0e0e0; /* Gris claro para títulos en modo oscuro */
+    --color-text-light: #cccccc; /* Gris para texto general en modo oscuro */
+    --color-light: #1a1a1a; /* Fondo muy oscuro */
+    --color-bg-alt: #2a2a2a; /* Fondo de secciones alternativas en modo oscuro */
+    --color-card-bg: #3a3a3a; /* Fondo de tarjetas en modo oscuro */
+    --color-card-border: #4a4a4a; /* Borde de tarjetas en modo oscuro */
+    --color-skill-card-bg: var(--color-card-bg); /* Fondo de tarjetas de skills en modo oscuro */
+    --color-skill-card-hover-bg: #4a4a4a; /* Fondo de tarjetas de skills al hover en modo oscuro */
+
+    --shadow-soft: 0 4px 10px rgba(0, 0, 0, 0.4);
+    --shadow-hover: 0 8px 18px rgba(0, 0, 0, 0.6); 
+}
+
 body {
     font-family: var(--font-family);
     line-height: 1.6;
-    color: var(--color-text-light);
-    background-color: var(--color-light);
+    color: var(--color-text-light); /* Usa la variable */
+    background-color: var(--color-light); /* Usa la variable */
     scroll-behavior: smooth; /* Mejora la experiencia de anclaje */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Suaviza el cambio de tema */
 }
 
 a {
@@ -43,7 +66,7 @@ a {
     font-size: 2.5em;
     margin-bottom: 50px;
     text-align: center;
-    color: var(--color-secondary);
+    color: var(--color-secondary); /* Usa la variable */
     font-weight: 700;
 }
 
@@ -51,11 +74,12 @@ a {
 /* 2. NAVEGACIÓN Y HEADER */
 /* ------------------------------------------------ */
 .header {
-    background-color: var(--color-light);
+    background-color: var(--color-light); /* Usa la variable */
     position: sticky; /* Fija la navegación al hacer scroll */
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease; /* Suaviza el cambio de tema */
 }
 
 .navbar {
@@ -70,25 +94,41 @@ a {
 .logo-placeholder {
     font-size: 1.6em;
     font-weight: 700;
-    color: var(--color-secondary); 
+    color: var(--color-secondary); /* Usa la variable */
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
+    align-items: center; /* Alinea el botón de tema con los demás ítems */
 }
 
 .navbar li a {
     padding: 10px 15px;
     display: block;
     font-weight: 400;
-    color: var(--color-text-light);
+    color: var(--color-text-light); /* Usa la variable */
     transition: color 0.3s;
 }
 
 .navbar li a:hover {
-    color: var(--color-primary);
+    color: var(--color-primary); /* Usa la variable */
 }
+
+/* Estilos para el botón de cambio de tema */
+.btn-theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: var(--color-text-light); /* Color del icono */
+    cursor: pointer;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+.btn-theme-toggle:hover {
+    color: var(--color-primary); /* Resalta al pasar el mouse */
+}
+
 
 /* ------------------------------------------------ */
 /* 3. BOTONES (Reutilizables) */
@@ -98,30 +138,30 @@ a {
     padding: 12px 28px;
     border-radius: 4px;
     font-weight: 700;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s, transform 0.2s, color 0.3s; /* Añade color a la transición */
     text-transform: uppercase;
     font-size: 0.9em;
 }
 
 .btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-light);
-    border: 2px solid var(--color-primary);
+    background-color: var(--color-primary); /* Usa la variable */
+    color: var(--color-light); /* Usa la variable */
+    border: 2px solid var(--color-primary); /* Usa la variable */
     margin-right: 15px;
 }
 .btn-primary:hover {
-    background-color: #4a148c; 
+    background-color: #4a148c; /* Color más oscuro para hover de primary */
     transform: translateY(-1px);
 }
 
 .btn-secondary {
     background-color: transparent;
-    color: var(--color-primary);
-    border: 2px solid var(--color-primary);
+    color: var(--color-primary); /* Usa la variable */
+    border: 2px solid var(--color-primary); /* Usa la variable */
 }
 .btn-secondary:hover {
-    background-color: var(--color-primary);
-    color: var(--color-light);
+    background-color: var(--color-primary); /* Usa la variable */
+    color: var(--color-light); /* Usa la variable */
     transform: translateY(-1px);
 }
 
@@ -134,17 +174,18 @@ a {
 /* 4. SECCIÓN HERO */
 /* ------------------------------------------------ */
 .hero {
-    background-color: var(--color-bg-alt);
+    background-color: var(--color-bg-alt); /* Usa la variable */
     text-align: center;
-    padding: 150px 5% 100px 5%; /* Ajuste del padding para dar espacio al logo */
-    position: relative; /* CLAVE: Base para posicionar el logo de forma absoluta */
+    padding: 150px 5% 100px 5%; 
+    position: relative; 
+    transition: background-color 0.3s ease; /* Suaviza el cambio de tema */
 }
 
 /* ESTILOS PARA EL CONTENEDOR DEL LOGO (Circular y Recortado) */
 .hero-logo-container {
-    position: absolute; /* CLAVE: Posicionamiento absoluto */
-    top: 30px; /* Distancia desde el borde superior del .hero */
-    left: 5%; /* Distancia desde el borde izquierdo del .hero */
+    position: absolute; 
+    top: 30px; 
+    left: 5%; 
     
     width: 100px; 
     height: 100px; 
@@ -154,43 +195,42 @@ a {
     align-items: center;
     
     z-index: 10; 
-    margin: 0; /* Aseguramos que no se centre por márgenes */
+    margin: 0; 
 
-    /* ¡CLAVE para el efecto circular con recorte! */
     border-radius: 50%; 
-    overflow: hidden; /* Recorta todo lo que esté fuera de la forma circular */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil para resaltar */
+    overflow: hidden; 
+    box-shadow: var(--shadow-soft); /* Usa la variable */
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.hero-logo-container:hover { /* El hover se aplica al contenedor para el efecto */
+.hero-logo-container:hover { 
     transform: scale(1.08);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-hover); /* Usa la variable */
 }
 
 /* ESTILOS PARA LA IMAGEN DENTRO DEL CONTENEDOR DEL LOGO (Normalizamos la imagen) */
 .hero-logo-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Cambiamos a 'cover' para que ocupe todo el círculo sin dejar espacios, puede recortar un poco la imagen */
-    /* Aquí no va border-radius; lo aplica el contenedor */
+    object-fit: cover; 
 }
 
 .hero h1 {
     font-size: 3.5em;
-    color: var(--color-secondary);
+    color: var(--color-secondary); /* Usa la variable */
     margin-bottom: 10px;
 }
 
 .hero h2 {
     font-size: 1.5em;
-    color: var(--color-primary);
+    color: var(--color-primary); /* Usa la variable */
     margin-bottom: 30px;
     font-weight: 400;
 }
 
 .hero p {
     font-size: 1.1em;
+    color: var(--color-text-light); /* Usa la variable */
     margin-bottom: 40px;
 }
 
@@ -198,7 +238,8 @@ a {
 /* 5. SECCIÓN SKILLS */
 /* ------------------------------------------------ */
 .skills {
-    background-color: var(--color-light); 
+    background-color: var(--color-light); /* Usa la variable */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Suaviza el cambio de tema */
 }
 
 .skills-grid {
@@ -208,22 +249,22 @@ a {
 }
 
 .skill-card {
-    background-color: var(--color-bg-alt);
+    background-color: var(--color-skill-card-bg); /* Usa la variable */
     padding: 30px;
     border-radius: 8px;
-    border-top: 5px solid var(--color-primary); 
-    box-shadow: var(--shadow-soft);
+    border-top: 5px solid var(--color-primary); /* Usa la variable */
+    box-shadow: var(--shadow-soft); /* Usa la variable */
     transition: all 0.3s ease-in-out; 
 }
 
 .skill-card:hover {
     transform: translateY(-5px); 
-    box-shadow: var(--shadow-hover);
-    background-color: var(--color-light);
+    box-shadow: var(--shadow-hover); /* Usa la variable */
+    background-color: var(--color-skill-card-hover-bg); /* Usa la variable */
 }
 
 .skill-card h3 {
-    color: var(--color-secondary);
+    color: var(--color-secondary); /* Usa la variable */
     margin-bottom: 15px;
     font-size: 1.4em;
 }
@@ -235,14 +276,20 @@ a {
 
 .skill-card li {
     padding: 5px 0;
-    border-bottom: 1px dashed #cccccc;
+    border-bottom: 1px dashed #cccccc; /* Este color podría necesitar una variable de tema si se quiere cambiar */
+    color: var(--color-text-light); /* Usa la variable */
 }
+html[data-theme='dark'] .skill-card li { /* Ajuste para el borde de la lista en modo oscuro */
+    border-bottom-color: #555555;
+}
+
 
 /* ------------------------------------------------ */
 /* 6. SECCIÓN PROYECTOS */
 /* ------------------------------------------------ */
 .projects {
-    background-color: var(--color-bg-alt);
+    background-color: var(--color-bg-alt); /* Usa la variable */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Suaviza el cambio de tema */
 }
 
 .projects-grid {
@@ -252,31 +299,35 @@ a {
 }
 
 .project-card {
-    background-color: var(--color-light);
+    background-color: var(--color-card-bg); /* Usa la variable */
     padding: 30px;
     border-radius: 8px;
-    border: 1px solid #e0e0e0;
-    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--color-card-border); /* Usa la variable */
+    box-shadow: var(--shadow-soft); /* Usa la variable */
     transition: all 0.3s ease-in-out; 
 }
 
 .project-card:hover {
     transform: translateY(-5px); 
-    box-shadow: var(--shadow-hover);
-    border-color: var(--color-primary); 
+    box-shadow: var(--shadow-hover); /* Usa la variable */
+    border-color: var(--color-primary); /* Usa la variable */
 }
 
 .project-card h3 {
-    color: var(--color-secondary);
+    color: var(--color-secondary); /* Usa la variable */
     font-size: 1.6em;
     margin-bottom: 10px;
 }
 
 .tech-stack {
-    color: var(--color-primary);
+    color: var(--color-primary); /* Usa la variable */
     font-weight: 700;
     margin-bottom: 15px;
     font-size: 0.95em;
+}
+
+.project-card p { /* Asegura que el texto de descripción también cambie de color */
+    color: var(--color-text-light);
 }
 
 .project-links a {
@@ -288,19 +339,27 @@ a {
 /* ------------------------------------------------ */
 .contact {
     text-align: center;
+    background-color: var(--color-light); /* Usa la variable */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Suaviza el cambio de tema */
 }
 
 .contact-info {
     margin-top: 30px;
     font-size: 1.1em;
+    color: var(--color-text-light); /* Usa la variable */
+}
+
+.contact-info strong {
+    color: var(--color-secondary); /* Usa la variable */
 }
 
 .footer {
-    background-color: var(--color-secondary);
-    color: #cccccc;
+    background-color: var(--color-secondary); /* Usa la variable */
+    color: #cccccc; /* Este color se mantiene fijo para el footer oscuro */
     text-align: center;
     padding: 20px;
     font-size: 0.85em;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Suaviza el cambio de tema */
 }
 
 .footer p {
@@ -319,6 +378,10 @@ a {
     }
     .navbar li {
         margin: 0 5px;
+    }
+    /* Posición del botón de tema en móvil */
+    .navbar li:last-child {
+        margin-top: 10px;
     }
     .hero h1 {
         font-size: 2.5em;
