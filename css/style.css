@@ -135,6 +135,7 @@ a {
     background-color: var(--color-bg-alt);
     text-align: center;
     padding: 150px 5%;
+    position: relative; 
 }
 
 .visually-hidden {
@@ -149,20 +150,26 @@ a {
 }
 
 .hero-logo-container {
-    margin: 0 auto 20px auto;
-    width: 150px; 
-    height: 150px; 
+    position: absolute; 
+    top: 30px; 
+    left: 5%; 
+    
+    width: 100px; 
+    height: 100px; 
+    
     display: flex; 
     justify-content: center;
     align-items: center;
+    
+    z-index: 10; 
 }
 
 .hero-logo-container img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    max-width: 200px; 
-    max-height: 200px;
+    max-width: 150px; 
+    max-height: 150px;
     transition: transform 0.3s ease-in-out;
 }
 
@@ -321,8 +328,9 @@ a {
         font-size: 1.2em;
     }
     .hero-logo-container {
-        width: 100px; 
-        height: 100px;
-        margin-top: 20px; 
+        width: 80px; 
+        height: 80px;
+        top: 20px;
+        left: 5%;
     }
 }
