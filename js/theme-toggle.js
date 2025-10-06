@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const html = document.documentElement; 
-    const logoLight = document.getElementById('logo-light'); // Logo con colores oscuros (para fondo claro)
-    const logoDark = document.getElementById('logo-dark');   // Logo con colores claros (para fondo oscuro)
+    // logoDark: AHORA es el ID del logo con color oscuro (necesario para el tema CLARO)
+    const logoDark = document.getElementById('logo-dark');   
+    // logoLight: AHORA es el ID del logo con color claro (necesario para el tema OSCURO)
+    const logoLight = document.getElementById('logo-light'); 
 
     /**
      * Aplica el tema seleccionado al HTML, guarda la preferencia y actualiza UI.
@@ -20,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param {string} currentTheme - El tema actualmente activo.
      */
     function updateToggleIcon(currentTheme) {
-        // Muestra el icono opuesto al tema activo, sugiriendo el cambio.
         if (currentTheme === 'dark') {
             themeToggle.innerHTML = '<i class="fas fa-sun"></i>'; 
         } else {
@@ -30,21 +31,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Controla qué imagen de logo debe mostrarse para mantener el contraste.
+     * La lógica se invierte porque los IDs del HTML fueron invertidos.
      * @param {string} currentTheme - El tema actualmente activo.
      */
     function updateLogo(currentTheme) {
-        // Remueve la clase activa de ambos logos para asegurar un solo visible.
         logoLight.classList.remove('active-logo');
         logoDark.classList.remove('active-logo');
         
-        // La lógica se invierte para garantizar el contraste:
-        // Fondo oscuro (dark) necesita el logo claro (logoDark).
+        // Si el tema es OSCURO, mostramos el logo CLARO (logoLight)
         if (currentTheme === 'dark') {
-            logoDark.classList.add('active-logo'); 
-        } 
-        // Fondo claro (light) necesita el logo oscuro (logoLight).
-        else {
             logoLight.classList.add('active-logo'); 
+        } 
+        // Si el tema es CLARO, mostramos el logo OSCURO (logoDark)
+        else {
+            logoDark.classList.add('active-logo'); 
         }
     }
 
