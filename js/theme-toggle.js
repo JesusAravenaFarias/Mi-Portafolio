@@ -1,26 +1,18 @@
-// Si ves este mensaje en la Consola (F12) de tu navegador, el script está cargando.
-console.log("Script de Theme Toggle cargado correctamente.");
-
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const html = document.documentElement; // Accede a la etiqueta <html>
+    const logoLight = document.getElementById('logo-light');
+    const logoDark = document.getElementById('logo-dark');
 
-    // 1. Cargar el tema guardado o el preferido por el sistema
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (savedTheme) {
-        html.setAttribute('data-theme', savedTheme);
-        updateToggleIcon(savedTheme);
-    } else if (prefersDark) {
-        html.setAttribute('data-theme', 'dark');
-        updateToggleIcon('dark');
-    } else {
-        // Si no hay preferencia guardada ni del sistema, se asume light (definido en HTML)
-        updateToggleIcon('light'); 
+    // 1. Función para aplicar el tema y actualizar el logo
+    function applyTheme(theme) {
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        updateToggleIcon(theme);
+        updateLogo(theme);
     }
 
-    // 2. Función para actualizar el icono del botón
+    // 2. Función para actualizar el icono del botón (sol/luna)
     function updateToggleIcon(currentTheme) {
         if (currentTheme === 'dark') {
             themeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Mostrar sol para cambiar a claro
@@ -29,13 +21,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 3. Manejar el click del botón
+    // 3. Función para cambiar la visibilidad del logo
+    function updateLogo(currentTheme) {
+        // Removemos la clase 'active-logo' de ambos por seguridad
+        logoLight.classList.remove('active-logo');
+        logoDark.classList.remove('active-logo');
+        
+        // Agregamos la clase al logo que corresponde al tema
+        if (currentTheme === 'dark') {
+            logoDark.classList.add('active-logo'); // Muestra el logo para fondo oscuro (logo claro)
+        } else {
+            logoLight.classList.add('active-logo'); // Muestra el logo para fondo claro (logo oscuro)
+        }
+    }
+
+    // 4. Cargar el tema al inicio (Prioridad: Guardado > Sistema > Default)
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme) {
+        applyTheme(savedTheme);
+    } else if (prefersDark) {
+        applyTheme('dark');
+    } else {
+        applyTheme('light'); 
+    }
+
+    // 5. Manejar el click del botón
     themeToggle.addEventListener('click', () => {
         let currentTheme = html.getAttribute('data-theme');
         let newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme); // Guardar preferencia
-        updateToggleIcon(newTheme); // Actualizar icono
+        applyTheme(newTheme);
     });
 });
